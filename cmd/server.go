@@ -164,9 +164,30 @@ func NewServerCommand(stopCh <-chan struct{}) *cobra.Command {
 				// etcd is marked as ready to serve traffic
 				handler.Status = http.StatusOK
 
-				if err = ssr.TakeFullSnapshotAndResetTimer(); err != nil {
-					logger.Errorf("Failed to take first snapshot: %v", err)
-					continue
+				startFullSnapshot, delaySeconds := true, deltaSnapshotIntervalSeconds
+
+				// TODO: write code to find out if prev full snapshot is older than it is
+				// supposed to be, according to the given cron schedule, instead of the
+				// hard-coded "24 hours" full snapshot interval
+				if ssr.PrevFullSnapshot == nil || time.Now().Sub(ssr.PrevFullSnapshot.CreatedOn).Hours() > 24 {
+					if err = ssr.TakeFullSnapshotAndResetTimer(); err != nil {
+						logger.Errorf("Failed to take first full snapshot: %v", err)
+						continue
+					}
+					startFullSnapshot, delaySeconds = false, 0
+				} else {
+					if err = ssr.CollectEventsSincePrevSnapshot(); err != nil {
+						if etcdErr, ok := err.(*errors.EtcdError); ok == true {
+							logger.Errorf("Failed to take first delta snapshot: snapshotter failed with etcd error: %v", etcdErr)
+						} else {
+							logger.Errorf("Failed to take first delta snapshot: snapshotter failed with error: %v", err)
+						}
+						continue
+					}
+					if err = ssr.TakeDeltaSnapshot(); err != nil {
+						logger.Errorf("Failed to take first delta snapshot: snapshotter failed with error: %v", err)
+						continue
+					}
 				}
 
 				ssr.SsrStateMutex.Lock()
@@ -175,7 +196,7 @@ func NewServerCommand(stopCh <-chan struct{}) *cobra.Command {
 				gcStopCh := make(chan struct{})
 				go ssr.RunGarbageCollector(gcStopCh)
 				logger.Infof("Starting snapshotter...")
-				if err := ssr.Run(ssrStopCh, false); err != nil {
+				if err := ssr.Run(ssrStopCh, startFullSnapshot, delaySeconds); err != nil {
 					if etcdErr, ok := err.(*errors.EtcdError); ok == true {
 						logger.Errorf("Snapshotter failed with etcd error: %v", etcdErr)
 					} else {

@@ -175,7 +175,7 @@ func runSnapshotter(logger *logrus.Logger, deltaSnapshotPeriod int, endpoints []
 		snapshotterConfig,
 	)
 
-	return ssr.Run(stopCh, true)
+	return ssr.Run(stopCh, true, 0)
 }
 
 // populateEtcd sequentially puts key-value pairs into the embedded etcd, until stopped

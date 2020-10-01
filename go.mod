@@ -6,7 +6,7 @@ require (
 	cloud.google.com/go v0.50.0
 	cloud.google.com/go/storage v1.0.0
 	github.com/Azure/azure-pipeline-go v0.2.2
-	github.com/Azure/azure-storage-blob-go v0.8.0
+	github.com/Azure/azure-storage-blob-go v0.10.0
 	github.com/MakeNowJust/heredoc v1.0.0 // indirect
 	github.com/aliyun/aliyun-oss-go-sdk v2.0.3+incompatible
 	github.com/aws/aws-sdk-go v1.32.6

@@ -10,10 +10,10 @@ cloud.google.com/go/internal/version
 # cloud.google.com/go/storage v1.0.0
 ## explicit
 cloud.google.com/go/storage
-# github.com/Azure/azure-pipeline-go v0.2.2
+# github.com/Azure/azure-pipeline-go v0.2.3
 ## explicit
 github.com/Azure/azure-pipeline-go/pipeline
-# github.com/Azure/azure-storage-blob-go v0.8.0
+# github.com/Azure/azure-storage-blob-go v0.13.0
 ## explicit
 github.com/Azure/azure-storage-blob-go/azblob
 # github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78
@@ -445,8 +445,7 @@ github.com/mailru/easyjson/jlexer
 github.com/mailru/easyjson/jwriter
 # github.com/mattn/go-colorable v0.0.9
 github.com/mattn/go-colorable
-# github.com/mattn/go-ieproxy v0.0.0-20190805055040-f9202b1cfdeb
-## explicit
+# github.com/mattn/go-ieproxy v0.0.1
 github.com/mattn/go-ieproxy
 # github.com/mattn/go-isatty v0.0.4
 github.com/mattn/go-isatty
@@ -640,8 +639,7 @@ golang.org/x/oauth2/jwt
 # golang.org/x/sync v0.0.0-20190911185100-cd5d95a43a6e
 golang.org/x/sync/errgroup
 golang.org/x/sync/semaphore
-# golang.org/x/sys v0.0.0-20200728102440-3e129f6d46b1
-## explicit
+# golang.org/x/sys v0.0.0-20200828194041-157a740278f4
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix
 golang.org/x/sys/windows
@@ -1091,8 +1089,8 @@ sigs.k8s.io/yaml
 # github.com/coreos/bbolt => github.com/coreos/bbolt v1.3.3
 # github.com/coreos/etcd => github.com/coreos/etcd v3.3.22+incompatible
 # github.com/docker/docker => github.com/moby/moby v0.7.3-0.20190826074503-38ab9da00309
-# google.golang.org/grpc => google.golang.org/grpc v1.26.0
 # github.com/golang/protobuf => github.com/golang/protobuf v1.3.5
+# google.golang.org/grpc => google.golang.org/grpc v1.26.0
 # k8s.io/api => k8s.io/api v0.18.0
 # k8s.io/apimachinery => k8s.io/apimachinery v0.18.0
 # k8s.io/client-go => k8s.io/client-go v0.18.0

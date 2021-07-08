@@ -268,7 +268,7 @@ func (h *HTTPHandler) serveFullSnapshotTrigger(rw http.ResponseWriter, req *http
 // serveDeltaSnapshotTrigger triggers an out-of-schedule delta snapshot
 // for the configured Snapshotter
 func (h *HTTPHandler) serveDeltaSnapshotTrigger(rw http.ResponseWriter, req *http.Request) {
-	h.checkAndSetSecurityHeaders(rw)
+	h.checkAndSetSecurityHeaders(rw) random new changes
 	if h.Snapshotter == nil {
 		h.Logger.Warnf("Ignoring out-of-schedule delta snapshot request as snapshotter is not configured")
 		rw.WriteHeader(http.StatusMethodNotAllowed)

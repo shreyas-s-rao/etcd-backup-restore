@@ -204,6 +204,7 @@ func (a *ABSSnapStore) List() (brtypes.SnapList, error) {
 
 		// Process the blobs returned in this result segment
 		for _, blob := range listBlob.Segment.BlobItems {
+			//blob.Properties.ContentLength
 			if strings.Contains(blob.Name, backupVersionV1) || strings.Contains(blob.Name, backupVersionV2) {
 				//the blob may contain the full path in its name including the prefix
 				blobName := strings.TrimPrefix(blob.Name, prefix)

@@ -91,6 +91,7 @@ type Snapshot struct {
 	Prefix            string    `json:"prefix"`            // Points to correct prefix of a snapshot in snapstore (Required for Backward Compatibility)
 	CompressionSuffix string    `json:"compressionSuffix"` // CompressionSuffix depends on compessionPolicy
 	IsFinal           bool      `json:"isFinal"`
+	Size              int64     `json:"size"`
 }
 
 // GenerateSnapshotName prepares the snapshot name from metadata

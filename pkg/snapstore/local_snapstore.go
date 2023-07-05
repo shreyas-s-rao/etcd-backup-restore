@@ -86,6 +86,7 @@ func (s *LocalSnapStore) List() (brtypes.SnapList, error) {
 		if info.IsDir() {
 			return nil
 		}
+		//info.Size()
 		if strings.Contains(path, backupVersionV1) || strings.Contains(path, backupVersionV2) {
 			snap, err := ParseSnapshot(path)
 			if err != nil {

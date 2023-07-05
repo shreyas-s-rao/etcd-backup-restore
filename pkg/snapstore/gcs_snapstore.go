@@ -224,20 +224,21 @@ func (s *GCSSnapStore) List() (brtypes.SnapList, error) {
 
 	it := s.client.Bucket(s.bucket).Objects(context.TODO(), &storage.Query{Prefix: prefix})
 
-	var attrs []*storage.ObjectAttrs
+	var objectAttrs []*storage.ObjectAttrs
 	for {
 		attr, err := it.Next()
+		//attr.Size
 		if err == iterator.Done {
 			break
 		}
 		if err != nil {
 			return nil, err
 		}
-		attrs = append(attrs, attr)
+		objectAttrs = append(objectAttrs, attr)
 	}
 
 	var snapList brtypes.SnapList
-	for _, v := range attrs {
+	for _, v := range objectAttrs {
 		if strings.Contains(v.Name, backupVersionV1) || strings.Contains(v.Name, backupVersionV2) {
 			snap, err := ParseSnapshot(v.Name)
 			if err != nil {

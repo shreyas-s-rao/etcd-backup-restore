@@ -239,6 +239,7 @@ func (s *OSSSnapStore) List() (brtypes.SnapList, error) {
 			return nil, err
 		}
 		for _, object := range lsRes.Objects {
+			//object.Size
 			if strings.Contains(object.Key, backupVersionV1) || strings.Contains(object.Key, backupVersionV2) {
 				snap, err := ParseSnapshot(object.Key)
 				if err != nil {

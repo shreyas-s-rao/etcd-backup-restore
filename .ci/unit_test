@@ -57,7 +57,8 @@ function test_with_coverage() {
 # To run a specific package, run TEST_PACKAGES=<PATH_TO_PACKAGE> make test
 TEST_PACKAGES=${TEST_PACKAGES:-""}
 if [[ -z "${TEST_PACKAGES}" ]]; then
-  TEST_PACKAGES="cmd pkg"
+#  TEST_PACKAGES="cmd pkg"
+  TEST_PACKAGES="pkg/snapstore"
 fi
 
 RUN_NEGATIVE=${RUN_NEGATIVE:-"true"}

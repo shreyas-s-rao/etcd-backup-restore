@@ -469,6 +469,8 @@ func (ssr *Snapshotter) TakeDeltaSnapshot() (*brtypes.Snapshot, error) {
 	}
 	ssr.events = hash.Sum(ssr.events)
 
+	snap.Size = int64(len(ssr.events))
+
 	startTime := time.Now()
 	rc := io.NopCloser(bytes.NewReader(ssr.events))
 

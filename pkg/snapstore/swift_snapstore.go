@@ -456,7 +456,7 @@ func (s *SwiftSnapStore) List() (brtypes.SnapList, error) {
 	var snapList brtypes.SnapList
 	// Define an anonymous function to be executed on each page's iteration
 	err := pager.EachPage(func(page pagination.Page) (bool, error) {
-
+		//objects.ExtractInfo()[0].Bytes
 		objectList, err := objects.ExtractNames(page)
 		if err != nil {
 			return false, err

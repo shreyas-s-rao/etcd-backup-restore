@@ -181,6 +181,7 @@ func (m *memberControl) IsMemberInCluster(ctx context.Context) (bool, error) {
 	for _, member := range etcdMemberList.Members {
 		if member.GetName() == m.podName {
 			m.logger.Infof("Member %s part of running cluster", m.podName)
+			// TODO: check if member is learner or not
 			return true, nil
 		}
 	}

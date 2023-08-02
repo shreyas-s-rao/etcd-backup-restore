@@ -161,6 +161,7 @@ func (d *DataValidator) sanityCheck(failBelowRevision int64) (DataDirStatus, err
 		return BoltDBCorrupt, nil
 	}
 
+	// TODO: what if a follower gets corrupted?
 	if d.OriginalClusterSize > 1 {
 		d.Logger.Info("Skipping check for revision consistency of etcd member as it will get in sync with etcd leader.")
 		return DataDirectoryValid, nil
@@ -168,6 +169,7 @@ func (d *DataValidator) sanityCheck(failBelowRevision int64) (DataDirStatus, err
 
 	d.Logger.Info("Checking for etcd revision consistency...")
 	etcdRevisionStatus, latestSnapshotRevision, err := d.checkEtcdDataRevisionConsistency(etcdRevision, failBelowRevision)
+	// TODO: handle error
 
 	// if etcd revision is inconsistent with latest snapshot revision then
 	//   check the etcd revision consistency by starting an embedded etcd since the WALs file can have uncommited data which it was unable to flush to Bolt DB
